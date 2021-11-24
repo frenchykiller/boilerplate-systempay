@@ -1,33 +1,32 @@
 {
-  "name": "frenchykiller/boilerplate-systempay",
-  "description": "Component for sebastienheyd/boilerplate to generate a payment form for Banque Populaire Systempay",
-  "keywords": [
-    "laravel",
-    "systempay"
-  ],
-  "require": {
-    "php": ">=7.0",
-    "laravel/framework": ">=7.0"
-  },
-  "type": "library",
-  "license": "MIT",
-  "authors": [
-    {
-      "name": "Christopher Walker",
-      "email": "christophersvt3g@gmail.com"
-    }
-  ],
-  "autoload": {
-    "psr-4": {
-      "Frenchykiller\\BoilerplateSystempay\\": "src/"
-    }
-  },
-  "extra": {
-    "laravel": {
-      "providers": [
-        "Frenchykiller\\BoilerplateSystempay\\SystempayServiceProvider"
-      ]
-    }
-  },
-  "minimum-stability": "dev"
+    "name": "frenchykiller/boilerplate-systempay",
+    "description": "Component for sebastienheyd/boilerplate to generate a payment form for Banque Populaire Systempay",
+    "keywords": [
+        "laravel",
+        "systempay"
+    ],
+    "require": {
+        "sebastienheyd/boilerplate": "^7.10"
+    },
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Christopher Walker",
+            "email": "christophersvt3g@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Frenchykiller\\BoilerplateSystempay\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Frenchykiller\\BoilerplateSystempay\\SystempayServiceProvider"
+            ]
+        }
+    },
+    "minimum-stability": "dev"
 }
