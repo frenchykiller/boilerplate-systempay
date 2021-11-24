@@ -1,12 +1,10 @@
 <?php
 
-namespace Frenchykiller\BoilerplateSystempay;
+namespace Frenchykiller\LaravelSystempay;
 
-use Frenchykiller\BoilerplateSystempay\View\Composers\SystempayComposer;
+use Frenchykiller\LaravelSystempay\View\Components\Systempay;
 use Illuminate\Support\Facades\Blade;
-use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
-use Illuminate\Support\Str;
 
 class SystempayServiceProvider extends ServiceProvider
 {
@@ -22,13 +20,12 @@ class SystempayServiceProvider extends ServiceProvider
     {
 
         //Publishes package config file to applications config folder
-        $this->publishes([__DIR__ . '/config/boilerplate/systempay.php' => config_path('systempay.php')],['systempay-config','boilerplate-config']);
+        $this->publishes([__DIR__ . '/config/systempay.php' => config_path('systempay.php')],['systempay-config']);
 
         // Load views from current directory
-        $this->loadViewsFrom(__DIR__.'/resources/views', 'boilerplate-systempay');
+        $this->loadViewsFrom(__DIR__.'/resources/views', 'laravel-systempay');
 
-        // Load view composers
-        View::composer('boilerplate-systempay::components.systempay', SystempayComposer::class);
+        Blade::component('systempay', Systempay::class);
 
     }
 

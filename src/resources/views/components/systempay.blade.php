@@ -1,6 +1,6 @@
 @if(empty($amount))
     <code>
-        &lt;x-boilerplate-systempay::systempay>
+        &lt;x-systempay>
         The amount attribute has not been set
     </code>
 @else

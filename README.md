@@ -1,25 +1,24 @@
-# Systempay form component for [sebastienheyd/boilerplate](https://github.com/sebastienheyd/boilerplate)
+# Systempay form component for Laravel 7.x+
 
-![Laravel](https://img.shields.io/badge/Laravel-6.x%20→%208.x-green?logo=Laravel&style=flat-square)
+![Laravel](https://img.shields.io/badge/Laravel-7.x%20→%208.x-green?logo=Laravel&style=flat-square)
 ![GitHub](https://img.shields.io/github/license/frenchykiller/boilerplate-systempay?style=flat-square)
 
 ## Overview
-This package for [`sebastienheyd/boilerplate`](https://github.com/sebastienheyd/boilerplate) provides a simple component to create a payment form for Banque Populaire's Systempay api.
+This package provides a simple component to create a payment form for Banque Populaire's Systempay api.
 
 ## Installation
 In order to install the Laravel Boilerplate Systempay component, run:
 ```
-composer require frenchykiller/boilerplate-systempay
+composer require frenchykiller/laravel-systempay
 ```
 
 ## Configuration
 The component comes with a default config file making the component functional out of the box, however, if you wish to personalize the configuration, you can publish the config file with one of the following commands:
 ```
 php vendor:publish --tag=systempay-config
-php vendor:publish --tag=boilerplate-config
 ``` 
 
-By default, the configuration file located at `config/boilerplate/systempay.php` contains the following information:
+By default, the configuration file located at `config/systempay.php` contains the following information:
 ```php
 return [
     'default' => [
@@ -75,7 +74,7 @@ The following attributes are accepted:
 |amount|string/int|null|Total amount of the transaction in the currency's smallest unit (Required)|
 |currency|string|EUR|Currency to be used for the transaction. A complete list of accepted currencies can be found [here](https://paiement.systempay.fr/doc/en-EN/rest/V4.0/api/playground/Charge/CreatePayment/#currency)|
 |site|string|default|The name of the configuration to be used. Can be any name that is specified in the config file|
-|3ds|boolean|false|Whether or not to use 3DSecure for the transaction|
+|strongAuth|string|DISABLED|What mode to use for 3DS (Enabled/Disabled for 3DS1) [details](https://paiement.systempay.fr/doc/en-EN/rest/V4.0/api/playground/Charge/CreatePayment/#strongAuthentication)|
 |orderId|string|null|Order reference as defined by the merchant|
 |customer|array|null|Customer information such as their billing and/or shipping address. Complete list can be found [here](https://paiement.systempay.fr/doc/en-EN/rest/V4.0/api/playground/Charge/CreatePayment/#customer.email)|
 |merchant|array|null|Merchant information such as name, address. Complete list can be found [here](https://paiement.systempay.fr/doc/en-EN/rest/V4.0/api/playground/Charge/CreatePayment/#subMerchantDetails.companyType)|
