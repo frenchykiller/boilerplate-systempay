@@ -1,6 +1,6 @@
 {
-  "name": "restoore/laravel-systempay",
-  "description": "Easily create a systempay payment form.",
+  "name": "frenchykiller/boilerplate-systempay",
+  "description": "Component for sebastienheyd/boilerplate to generate a payment form for Banque Populaire Systempay",
   "keywords": [
     "laravel",
     "systempay"
@@ -13,19 +13,19 @@
   "license": "MIT",
   "authors": [
     {
-      "name": "Florian Congre",
-      "email": "florian.congre@gmail.com"
+      "name": "Christopher Walker",
+      "email": "christophersvt3g@gmail.com"
     }
   ],
   "autoload": {
     "psr-4": {
-      "Restoore\\Systempay\\": "src/"
+      "Frenchykiller\\BoilerplateSystempay\\": "src/"
     }
   },
   "extra": {
     "laravel": {
       "providers": [
-        "Restoore\\Systempay\\SystempayServiceProvider"
+        "Frenchykiller\\BoilerplateSystempay\\SystempayServiceProvider"
       ]
     }
   },

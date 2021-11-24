@@ -2,20 +2,17 @@
 
 return [
 
-    'YOUR_SITE_ID' => [
-        'key' => 'YOUR_KEY',
-        'env' => 'PRODUCTION',
-        'params' => [
-            //Put here your generals payment call parameters
-            'vads_page_action' => 'PAYMENT',
-            'vads_action_mode' => 'INTERACTIVE',
-            'vads_payment_config' => 'SINGLE',
-            'vads_page_action' => 'PAYMENT',
-            'vads_version' => 'V2',
-            'vads_currency' => '978'
-        ]
+    'url' => 'https://api.systempay.fr/api-payment/V4/',
+    'params' => [
+        'currency' => 'EUR',
+        'formAction' => 'PAYMENT',
+        'strongAuthentication' => 'DISABLED',
     ],
-    //Systempay's url
-    'url' => 'https://paiement.systempay.fr/vads-payment/',
 
+    'default' => [
+        'site_id' => env('SYSTEMPAY_SITE_ID', 'SITE_ID'),
+        'password' => env('SYSTEMPAY_PASSWORD', 'SITE_PASSWORD'),
+        'key' => env('SYSTEMPAY_KEY', 'SITE_KEY'),
+        'env' => env('SYSTEMPAY_ENV', 'TEST'),
+    ],
 ];

@@ -1,17 +1,13 @@
 <?php
 
-/**
- * Laravel library to create a systempay transaction
- *
- * @author restoore <https://github.com/restoore>
- * @version 1.0
- */
+namespace Frenchykiller\BoilerplateSystempay;
 
-namespace Restoore\Systempay;
+use App\Http\Controllers\Controller;
+use GuzzleHttp\Client;
+use GuzzleHttp\Exception\GuzzleException;
+use InvalidArgumentException;
 
-use Illuminate\Support\Facades\Config;
-
-class Systempay
+class SystempayController extends Controller
 
 {
 
@@ -25,15 +21,41 @@ class Systempay
      * Systempay constructor
      * @param       String $site_id unique shop id
      */
-    public function __construct($site_id)
+    public function __construct($site)
     {
-        $this->_key = env("SYSTEMPAY_{$site_id}_KEY", Config::get("systempay.{$site_id}.key"));
-        $this->_url = Config::get("systempay.url");
+        $this->_key = config("systempay.{$site}.key");
+        $this->_url = config("systempay.url");
         //Instanciate parameters array if exist in config file
-        $this->_params = Config::get("systempay.{$site_id}.params");
+        $this->_params = config("systempay.{$site}.params");
         //Directly instanciate the transaction parameters
-        $this->set_site_id($site_id);
-        $this->set_ctx_mode(env("SYSTEMPAY_{$site_id}_ENV", Config::get("systempay.{$site_id}.env")));
+        $this->set_site_id(config("systempay.{$site}.site_id"));
+        $this->set_ctx_mode(config("systempay.{$site}.env"));
+    }
+
+    private function form()
+    {
+        $stage = session()->get('stage');
+        $participant = session()->get('participant');
+
+        $client = new Client();
+        $headers = [
+            'Authorization' => 'Basic'.base64_encode(config('systempay.default.site_id').':'.config('systempay.default.password')),
+            'Content-Type' => 'application/json'
+        ];
+        $body = [
+            'amount' => $stage->tarif,
+            'currency' => config('systempay.params.currency')
+        ];
+
+        try{
+            $response = $client->request('POST', config('systempay.url').'Charge/CreatePayment', [
+                'headers' => $headers,
+                'json' => $body
+            ]);
+        } catch (GuzzleException $e) {
+            \Log::info($e->getMessage());
+        }
+        return json_decode($response->getBody()->getContents())->answer->formToken;
     }
 
     /**
@@ -41,7 +63,7 @@ class Systempay
      * Remember to not keep the 'vads' prefix in your accessor function name
      * @param       String $method name of the accessor
      * @param       array [optional] $args list of arguments
-     * @return      \App\Library\Systempay
+     * @return      Systempay
      * @throws      InvalidArgumentException
      */
     public function __call($method, $args)
@@ -64,7 +86,7 @@ class Systempay
     /**
      * Method to do massive assignement of parameters
      * @param           array $params associative array of systempay parameters
-     * @return          \App\Library\Systempay
+     * @return          Systempay
      */
     public function set_params($params)
     {
@@ -83,7 +105,7 @@ class Systempay
 
     /**
      * Generate systempay signature and add it to the parameters array
-     * @return      \App\Library\Systempay
+     * @return      Systempay
      */
     public function set_signature()
     {
@@ -110,7 +132,7 @@ class Systempay
      * Defines the total amount of the order. If you doesn't give the amount in parameter, it will be automaticly calculated
      * by the sum of products you've got in your basket
      * @param       [optional] int $amount, systempay format
-     * @return      \App\Library\Systempay
+     * @return      Systempay
      */
     public function set_amount($amount = 0)
     {
@@ -156,7 +178,7 @@ class Systempay
     /**
      * Add a product to the order
      * @param       array $product , must have the following keys : 'label,amount,type,ref,qty'
-     * @return      \App\Library\Systempay
+     * @return      Systempay
      */
     public function add_product($product)
     {

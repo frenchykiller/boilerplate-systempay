@@ -1,6 +1,6 @@
 <?php
 
-namespace Restoore\Systempay;
+namespace Frenchykiller\BoilerplateSystempay;
 
 use Illuminate\Support\ServiceProvider;
 
@@ -18,7 +18,7 @@ class SystempayServiceProvider extends ServiceProvider
     {
 
         //Publishes package config file to applications config folder
-        $this->publishes([__DIR__ . '/config/systempay.php' => config_path('systempay.php')]);
+        $this->publishes([__DIR__ . '/config/systempay.php' => config_path('systempay.php')],['systempay','systempay-config']);
     }
 
     /**
@@ -28,11 +28,11 @@ class SystempayServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->bind('systempay', 'Restoore\Systempay\Systempay');
+        $this->app->bind('systempay', 'Frenchykiller\BoilerplateSystempay\Systempay');
     }
 
     /**
-     * Only load library if she is called
+     * Only load library if it is called
      * @return array
      */
     public function provides()
