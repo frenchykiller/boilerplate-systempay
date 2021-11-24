@@ -1,9 +1,6 @@
-# Create Systempay payment form for Laravel 5.x
+# Create Systempay payment form for Laravel 7.x+
 
-![Package](https://img.shields.io/badge/Package-restoore%2Flaravel-systempay.svg)
-![Laravel](https://img.shields.io/badge/For-Laravel%20%E2%89%A5%205.4-yellow.svg)
-![Release](https://img.shields.io/github/release/restoore/laravel-systempay.svg)
-![Packagist](https://img.shields.io/packagist/v/restoore/laravel-systempay.svg)
+![Laravel](https://img.shields.io/badge/For-Laravel%20%E2%89%A5%207.0-yellow.svg)
 ![MIT License](https://img.shields.io/github/license/restoore/laravel-systempay.svg)
 ## What is the point ?
 The library provides an easy and fast systempay form creation. She helps to instanciate all required parameters and create the form to access to payment interface. To know required parameters, go to https://systempay.cyberpluspaiement.com/html/documentation.html
@@ -11,53 +8,30 @@ The library provides an easy and fast systempay form creation. She helps to inst
 ## Installation
 First you need to add the component to your composer.json
 ```
-composer require restoore/laravel-systempay
+composer require frenchykiller/boilerplate-systempay
 ```
-Update your packages with *composer update* or install with *composer install*.
+
 Execute *php artisan vendor:publish --provider="Restoore\Systempay\SystempayServiceProvider"* command to copy systempay.php configuration file in your environment
 
-After updating composer, add the ServiceProvider to the providers array in config/app.php
-
-#### For Laravel >= 5.1
-```php
-  'providers' => [
-      ...
-      Restoore\Systempay\SystempayServiceProvider::class,
-  ]
-```
-
-#### For Laravel 5.0
-```php
-  'providers' => [
-      ...
-      Restoore\Systempay\SystempayServiceProvider,
-  ]
-```
-
-#### For Laravel >= 5.5
-It's automatic, thanks to xmoroccan for this update
-
 ## Configuration
-By default, the package comes with an example configuration file : config/systempay.php
+Run `php vendor:publish --tag=systempay` or `php vendor:publish --tag=systempay-config` to publish the default config file.
+By default, the configuration file located at `config/systempay.php` contains the following information:
 ```php
 return [
 
-    'YOUR_SITE_ID' => [
-        'key' => 'YOUR_KEY',
-        'env' => 'PRODUCTION',
-        'params' => [
-            //Put here your generals payment call parameters
-            'vads_page_action' => 'PAYMENT',
-            'vads_action_mode' => 'INTERACTIVE',
-            'vads_payment_config' => 'SINGLE',
-            'vads_page_action' => 'PAYMENT',
-            'vads_version' => 'V2',
-            'vads_currency' => '978'
-        ]
+    'url' => 'https://api.systempay.fr/api-payment/V4/',
+    'params' => [
+        'currency' => 'EUR',
+        'formAction' => 'PAYMENT',
+        'strongAuthentication' => 'DISABLED',
     ],
-    //Systempay's url
-    'url' => 'https://paiement.systempay.fr/vads-payment/',
 
+    'default' => [
+        'site_id' => env('SYSTEMPAY_SITE_ID', 'SITE_ID'),
+        'password' => env('SYSTEMPAY_PASSWORD', 'SITE_PASSWORD'),
+        'key' => env('SYSTEMPAY_KEY', 'SITE_KEY'),
+        'env' => env('SYSTEMPAY_ENV', 'TEST'),
+    ],
 ];
 ```
 In this file, you have to put your *site_id* and your *key*. This two parameters are given by Systempay. As you can see,
@@ -65,8 +39,6 @@ you can create a configuration array to several shops. In this array, you can al
 
 ### Test environment
 If you are running your app in a test environment, you can override *key* and *env* parameters using .env file
-
-Use this following constants names : SYSTEMPAY_\<SITE_ID\>_KEY and SYSTEMPAY_\<SITE_ID\>_ENV
 
 ## Create a payment form
 Now we are finally ready to use the package! Here is a little example of code to explain how does it work
