@@ -1,7 +1,7 @@
-@if(empty($amount))
+@if(empty($request))
     <code>
         &lt;x-systempay>
-        The amount attribute has not been set
+        The request attribute has not been set
     </code>
 @else
     <div class="kr-embedded" kr-form-token="{{ $token }}"{!! empty($attributes) ? '' : ' '.$attributes !!}>

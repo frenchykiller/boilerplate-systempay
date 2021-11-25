@@ -10,7 +10,12 @@ return [
         'params' => [
             'currency' => 'EUR',
             'formAction' => 'PAYMENT',
-            'strongAuthentication' => 'DISABLED',
+            'strongAuthentication' => 'NO_PREFERENCE', //Setting this to DISABLED will let the card issuer decide whether 3DS2 is required or not. This will also remove any payment guarantee for the merchant.
+            'transactionOptions' => [
+                'cardOptions' => [
+                    'paymentSource' => 'EC', //Setting this to CC (Call Center) will disable all 3DS checks. This will also shift liability for chargebacks to the merchant.
+                ],
+            ],
         ],
     ],
 ];

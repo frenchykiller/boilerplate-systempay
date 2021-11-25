@@ -68,16 +68,10 @@ To include the Systempay form in a page, simply add the component in your blade 
 
 ### Attributes
 The following attributes are accepted:
-
+$request, $success = null, $fail = null, $site = 'default'
 | Name | Type | Default | Description |
 |---|---|---|---|
-|amount|string/int|null|Total amount of the transaction (Required)|
-|currency|string|EUR|Currency to be used for the transaction. A complete list of accepted currencies can be found [here](https://paiement.systempay.fr/doc/en-EN/rest/V4.0/api/playground/Charge/CreatePayment/#currency)|
+|request|array|null|Request containing the information to be sent to the systempay api to obtain the formToken. This request **must** contain the required `amount` field. Full documentation on aaccepted fields can be found [here](https://paiement.systempay.fr/doc/en-EN/rest/V4.0/api/playground/Charge/CreatePayment/)|
 |site|string|default|The name of the configuration to be used. Can be any name that is specified in the config file|
-|strongAuth|string|DISABLED|What mode to use for 3DS (Enabled/Disabled for 3DS1) [details](https://paiement.systempay.fr/doc/en-EN/rest/V4.0/api/playground/Charge/CreatePayment/#strongAuthentication) *This is subject to card emitter acceptance*|
-|orderId|string|null|Order reference as defined by the merchant|
-|customer|array|null|Customer information such as their billing and/or shipping address. Complete list can be found [here](https://paiement.systempay.fr/doc/en-EN/rest/V4.0/api/playground/Charge/CreatePayment/#customer.email)|
-|merchant|array|null|Merchant information such as name, address. Complete list can be found [here](https://paiement.systempay.fr/doc/en-EN/rest/V4.0/api/playground/Charge/CreatePayment/#subMerchantDetails.companyType)|
 |success|string|null|URL to redirect to if the payment is successful|
 |fail|string|null|URL to redirect to if the payment is rejected|
-|transactionOptions|array|null|Extra information about the transaction. To fully disabled 3DS and assume all liability, you can use the `cardOptions.paymentSource` parameter set to `CC` [details](https://paiement.systempay.fr/doc/en-EN/rest/V4.0/api/playground/Charge/CreatePayment/#transactionOptions.cardOptions.paymentSource)|
