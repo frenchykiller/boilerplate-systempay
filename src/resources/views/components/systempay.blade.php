@@ -19,7 +19,8 @@
     <script
         src="https://api.systempay.fr/static/js/krypton-client/V4.0/stable/kr-payment-form.min.js"
         kr-public-key="{{ $key }}"
-        kr-post-url-success="{{ isset($success) ? $success : '' }}">
+        {{ isset($success) ? "kr-get-url-success='$success'" : '' }}
+        {{ isset($fail) ? "kr-get-url-refused='$fail'" : '' }}>
     </script>
 
     <link rel="stylesheet" href="https://api.systempay.fr/static/js/krypton-client/V4.0/ext/classic-reset.css">
