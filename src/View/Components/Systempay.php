@@ -19,7 +19,7 @@ class Systempay extends Component
         'customer',
         'merchant',
         'success',
-        'fail'
+        'fail',
     ];
 
     public array $request;
@@ -77,7 +77,7 @@ class Systempay extends Component
             'Content-Type' => 'application/json'
         ];
 
-        try{
+        try {
             $response = $client->request('POST', config("systempay.{$site}.url").'Charge/CreatePayment', [
                 'headers' => $headers,
                 'json' => $data
