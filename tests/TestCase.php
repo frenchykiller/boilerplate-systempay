@@ -13,7 +13,7 @@ abstract class TestCase extends OrchestraTestCase
     /**
      * Load package service provider.
      *
-     * @param   \Illuminate\Foundation\Application  $app
+     * @param \Illuminate\Foundation\Application $app
      *
      * @return array
      */

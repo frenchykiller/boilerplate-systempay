@@ -85,6 +85,7 @@ class Systempay extends Component
         } catch (GuzzleException $e) {
             \Log::info($e->getMessage());
         }
+
         return json_decode($response->getBody()->getContents())->answer->formToken;
     }
 }
