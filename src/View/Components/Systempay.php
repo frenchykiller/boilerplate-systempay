@@ -42,7 +42,7 @@ class Systempay extends Component
     /**
      * Create a new component instance.
      *
-     * @param array $request
+     * @param array  $request
      * @param string $success
      * @param string $fail
      * @param string $site
@@ -55,32 +55,32 @@ class Systempay extends Component
         $this->site = $site;
 
         $this->token = $this->getToken($site, [
-            'amount' => $request['amount'] * 100,
-            'strongAuthentication' => $request['strongAuth'] ?? config("systempay.{$site}.params.strongAuthentication"),
-            'currency' => $request['currency'] ?? config("systempay.{$site}.params.currency"),
-            'orderId' => $request['orderId'],
-            'customer' => $request['customer'],
-            'merchant' => $request['merchant'],
-            'transactionOptions' => $request['transactionOptions'],
-            'metadata' => $request['metadata'],
+            'amount'                => $request['amount'] * 100,
+            'strongAuthentication'  => $request['strongAuth'] ?? config("systempay.{$site}.params.strongAuthentication"),
+            'currency'              => $request['currency'] ?? config("systempay.{$site}.params.currency"),
+            'orderId'               => $request['orderId'] ?? null,
+            'customer'              => $request['customer'] ?? null,
+            'merchant'              => $request['merchant'] ?? null,
+            'transactionOptions'    => $request['transactionOptions'] ?? null,
+            'metadata'              => $request['metadata'] ?? null,
         ]);
         $this->key = config("systempay.{$site}.site_id").':'.config("systempay.{$site}.key");
         $this->success = $success;
         $this->fail = $fail;
     }
 
-    private function getToken($site, $data)
+    protected function getToken($site, $data)
     {
         $client = new Client();
         $headers = [
             'Authorization' => 'Basic'.base64_encode(config("systempay.{$site}.site_id").':'.config("systempay.{$site}.password")),
-            'Content-Type' => 'application/json'
+            'Content-Type'  => 'application/json'
         ];
 
         try {
             $response = $client->request('POST', config("systempay.{$site}.url").'Charge/CreatePayment', [
-                'headers' => $headers,
-                'json' => $data
+                'headers'   => $headers,
+                'json'      => $data
             ]);
         } catch (GuzzleException $e) {
             \Log::info($e->getMessage());

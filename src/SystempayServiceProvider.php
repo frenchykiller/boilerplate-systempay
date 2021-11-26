@@ -20,7 +20,7 @@ class SystempayServiceProvider extends ServiceProvider
     {
 
         //Publishes package config file to applications config folder
-        $this->publishes([__DIR__ . '/config/systempay.php' => config_path('systempay.php')], ['systempay-config']);
+        $this->publishes([__DIR__.'/config/systempay.php' => config_path('systempay.php')], ['systempay-config']);
 
         // Load views from current directory
         $this->loadViewsFrom(__DIR__.'/resources/views', 'laravel-systempay');
@@ -35,14 +35,6 @@ class SystempayServiceProvider extends ServiceProvider
      */
     public function register()
     {
-    }
 
-    /**
-     * Only load library if it is called
-     *
-     * @return array
-     */
-    public function provides()
-    {
     }
 }
