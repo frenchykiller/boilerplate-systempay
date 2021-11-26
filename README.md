@@ -2,6 +2,7 @@
 
 ![Laravel](https://img.shields.io/badge/Laravel-7.x%20→%208.x-green?logo=Laravel&style=flat-square)
 ![GitHub](https://img.shields.io/github/license/frenchykiller/boilerplate-systempay?style=flat-square)
+[![StyleCI](https://github.styleci.io/repos/431399057/shield?branch=master)](https://github.styleci.io/repos/431399057?branch=master)
 
 ## Overview
 This package provides a simple component to create a payment form for Banque Populaire's Systempay api.
