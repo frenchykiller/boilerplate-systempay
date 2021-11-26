@@ -13,7 +13,7 @@ abstract class TestCase extends OrchestraTestCase
     /**
      * Load package service provider.
      *
-     * @param  \Illuminate\Foundation\Application  $app
+     * @param   \Illuminate\Foundation\Application  $app
      *
      * @return array
      */
@@ -27,8 +27,8 @@ abstract class TestCase extends OrchestraTestCase
     protected function defineEnvironment($app)
     {
         $app['config']->set('systempay.default', [
-            'site_id' => '73239078',
-            'key' => 'testpublickey_Zr3fXIKKx0mLY9YNBQEan42ano2QsdrLuyb2W54QWmUJQ',
+            'site_id'   => '73239078',
+            'key'       => 'testpublickey_Zr3fXIKKx0mLY9YNBQEan42ano2QsdrLuyb2W54QWmUJQ',
         ]);
     }
 }

@@ -74,13 +74,13 @@ class Systempay extends Component
         $client = new Client();
         $headers = [
             'Authorization' => 'Basic'.base64_encode(config("systempay.{$site}.site_id").':'.config("systempay.{$site}.password")),
-            'Content-Type'  => 'application/json'
+            'Content-Type'  => 'application/json',
         ];
 
         try {
             $response = $client->request('POST', config("systempay.{$site}.url").'Charge/CreatePayment', [
                 'headers'   => $headers,
-                'json'      => $data
+                'json'      => $data,
             ]);
         } catch (GuzzleException $e) {
             \Log::info($e->getMessage());

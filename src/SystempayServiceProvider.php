@@ -8,7 +8,6 @@ use Illuminate\Support\ServiceProvider;
 
 class SystempayServiceProvider extends ServiceProvider
 {
-
     protected $defer = false;
 
     /**
@@ -35,6 +34,5 @@ class SystempayServiceProvider extends ServiceProvider
      */
     public function register()
     {
-
     }
 }
