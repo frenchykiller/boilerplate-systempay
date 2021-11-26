@@ -97,7 +97,7 @@ Please see [contributing.md](contributing.md) for details and a todolist.
 ## Credits
 
 - [Christopher Walker](https://github.com/frenchykiller)
-- [All Contributors](https://github.com/frenchyiller/laravel-systempay/graphs/contributors)
+- [All Contributors](https://github.com/frenchykiller/laravel-systempay/graphs/contributors)
 
 
 ## License
