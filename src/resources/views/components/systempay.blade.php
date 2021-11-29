@@ -19,8 +19,10 @@
     <script
         src="https://api.systempay.fr/static/js/krypton-client/V4.0/stable/kr-payment-form.min.js"
         kr-public-key="{{ $key }}"
-        {{ isset($success) ? "kr-get-url-success='$success'" : '' }}
-        {{ isset($fail) ? "kr-get-url-refused='$fail'" : '' }}>
+        {!! isset($successPost) ? "kr-post-url-success=\"$successPost\"" : '' !!}
+        {!! isset($successGet) ? "kr-get-url-success=\"$successGet\"" : '' !!}
+        {!! isset($failPost) ? "kr-post-url-refused=\"$failPost\"" : '' !!}
+        {!! isset($failGet) ? "kr-get-url-refused=\"$failGet\"" : '' !!}>
     </script>
 
     <link rel="stylesheet" href="https://api.systempay.fr/static/js/krypton-client/V4.0/ext/classic-reset.css">

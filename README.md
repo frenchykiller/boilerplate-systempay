@@ -26,8 +26,10 @@ The following attributes are accepted:
 | Name | Type | Default | Description |
 |---|---|---|---|
 |request|array|null|Request containing the information to be sent to the systempay api to obtain the formToken. This request **must** contain the required `amount` field. Full documentation on aaccepted fields can be found [here](https://paiement.systempay.fr/doc/en-EN/rest/V4.0/api/playground/Charge/CreatePayment/)|
-|success|string|null|URL to redirect to if the payment is successful|
-|fail|string|null|URL to redirect to if the payment is rejected|
+|successPost|string|null|Post URL to redirect to if the payment is successful|
+|successGet|string|null|Get URL to redirect to if the payment is successful|
+|failPost|string|null|Post URL to redirect to if the payment is rejected|
+|failGet|string|null|Get URL to redirect to if the payment is rejected|
 |site|string|default|The name of the configuration to be used. Can be any name that is specified in the config file|
 
 ## Configuration

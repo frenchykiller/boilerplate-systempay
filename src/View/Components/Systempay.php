@@ -25,8 +25,10 @@ class Systempay extends Component
     public array $request;
     public string $token;
     public string $key;
-    public ?string $success;
-    public ?string $fail;
+    public ?string $successPost;
+    public ?string $successGet;
+    public ?string $failPost;
+    public ?string $failGet;
     private string $site;
 
     /**
@@ -43,13 +45,15 @@ class Systempay extends Component
      * Create a new component instance.
      *
      * @param array  $request
-     * @param string $success
-     * @param string $fail
+     * @param string $successPost
+     * @param string $successGet
+     * @param string $failPost
+     * @param string $failGet
      * @param string $site
      *
      * @return void
      */
-    public function __construct($request, $success = null, $fail = null, $site = 'default')
+    public function __construct($request, $successPost = null, $successGet = null, $failPost = null, $failGet = null, $site = 'default')
     {
         $this->request = $request;
         $this->site = $site;
@@ -65,8 +69,10 @@ class Systempay extends Component
             'metadata'              => $request['metadata'] ?? null,
         ]);
         $this->key = config("systempay.{$site}.site_id").':'.config("systempay.{$site}.key");
-        $this->success = $success;
-        $this->fail = $fail;
+        $this->successPost = $successPost;
+        $this->successGet = $successGet;
+        $this->failPost = $failPost;
+        $this->failGet = $failGet;
     }
 
     protected function getToken($site, $data)
