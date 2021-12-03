@@ -11,7 +11,7 @@
         <div class="kr-security-code"></div>
 
         <!-- payment form submit button -->
-        <button class="kr-payment-button"></button>
+        {!! $hasButton === true ? '<button class="kr-payment-button"></button>' : '' !!}
 
         <!-- error zone -->
         <div class="kr-form-error"></div>

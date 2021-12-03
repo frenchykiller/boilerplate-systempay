@@ -16,6 +16,8 @@ class Systempay extends Component
         'strongAuth',
         'order-id',
         'orderId',
+        'has-button',
+        'hasButton',
         'customer',
         'merchant',
         'success',
@@ -23,6 +25,7 @@ class Systempay extends Component
     ];
 
     public array $request;
+    public bool $hasButton;
     public string $token;
     public string $key;
     public ?string $successPost;
@@ -45,6 +48,7 @@ class Systempay extends Component
      * Create a new component instance.
      *
      * @param array  $request
+     * @param bool   $hasButton
      * @param string $successPost
      * @param string $successGet
      * @param string $failPost
@@ -53,9 +57,10 @@ class Systempay extends Component
      *
      * @return void
      */
-    public function __construct($request, $successPost = null, $successGet = null, $failPost = null, $failGet = null, $site = 'default')
+    public function __construct($request, $hasButton = true, $successPost = null, $successGet = null, $failPost = null, $failGet = null, $site = 'default')
     {
         $this->request = $request;
+        $this->hasButton = $hasButton;
         $this->site = $site;
 
         $this->token = $this->getToken($site, [
