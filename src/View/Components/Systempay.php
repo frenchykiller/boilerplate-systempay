@@ -97,6 +97,13 @@ class Systempay extends Component
             \Log::info($e->getMessage());
         }
 
-        return json_decode($response->getBody()->getContents())->answer->formToken;
+        $token = json_decode($response->getBody()->getContents())->answer->formToken;
+        if ($token) {
+            \Log::info('Systempay formToken : ', $token);
+            return $token;
+        } else {
+            \Log::error($response->getBody()->getContents());
+            return null;
+        }
     }
 }
